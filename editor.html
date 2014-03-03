@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="lib/crafty.js"></script>
+<script src="src/editor.js"></script>
+<script src="src/editor_components.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+<script>
+
+function toggleMap() {
+	$("#map").toggle();
+	$("#map").text(JSON.stringify(map, undefined, 2));
+}
+
+function setSize() {
+	_mw = parseInt($("#width").val());
+	_mh = parseInt($("#height").val());
+	$("#editor").show();
+	$("#mapsize").hide();
+	Game.start();
+}
+
+</script>
+<style type="text/css" media="screen">
+	body {
+		background: black;
+		text-align: center;
+		color: #DDD;
+		font-family: Arial;
+	}
+
+	#cr-stage { margin: 20px auto 0; }
+
+</style>
+</head>
+<body>
+<div id="mapsize">
+<input id="width" type="text"> x <input id="height" type="text"> <input type="button" value="OK" onclick="setSize();">
+</div>
+<div id="editor" style="display:none;">
+<h2>Map Editor</h2>
+
+<a href="editor.html">restart</a><br/>
+Left pane is the map. Right pane is the tiles set. Click on a tile from the right pane to select a tile model, then click on the map to apply it. You can hold "shift" and move mouse around to go faster.<br/>
+Use "+" and "-" keys to change selector size.
+<br/><br/>
+To save your work, just click on "toggle map" below, then copy-paste json to a text file.<br/>
+To reload your work, open firebug or equivalent, type "map = " and copy/paste the json ; then execute "Crafty.scene('Editor');" and wait a little bit. That's it! <br/>
+
+<div id="cr-stage"></div>
+
+<a href='javascript:toggleMap()'>toggle map</a><br/>
+<div id="map" style="display:none;"></div>
+</div>
+</body>
+</html>

@@ -1,3 +1,5 @@
+The game will take place in 1550.
+
 1402 A.D., Anatolia. After defeating the Ottomans in Aleppo, Damascus, Baghdad, Ankara, and so on, Tamerlan granted lands to his allies. But not to the Aq Qoyunlu, the so-called "White Sheep". The need stronger allies to keep their conquests. Diyar Bakr region is granted to the old enemies, the Safavids.
 
 In 1406, the Safavids help Timurids to keep control of Tabriz against "Black Sheep".
@@ -37,4 +39,55 @@ The Mapuches took advantage of the situation to conquer not only Patagonia but u
 
 The situation became stable with these frontiers in 1521, despite sporadic conflicts between Incas and Mapuches. The “Mayus” (Mayusuyo) slowly expands to the North along the Atlantic coast.
 
-In Central Taizudalu, Aztecs and Chibchas fight for the Caraïbs.
+In Central Taizudalu, Aztecs and Chibchas fight for the Caribbean.
+
+Most notably, Chinese arrival broke down many cultural and administrative traditions, by bringing writing to these civilizations. First adopted by Incas and Aztecs, Mandarin alphabet slowly spread to the whole continent.
+
+Although the Chinese didn't actively proselytize, the original worships in Taizudalu were slowly influenced by principles of Taoism, Buddhism and Confucianism. These religions were adopted by some indigenous and new temples were erected. However, it didn't represent more than 1% of the total indigenous population in 1550. 
+
+It soon became trendy for indigenous elite to adopt a Chinese-like way of life.
+
+A technological revolution also followed Chinese arrival: canon powder, compass, sophisticated ships were introduced in Taizudalu. On the other hand, trading and production reached some never-seen peaks and China easily caught up Russia, Ottomans and Safavids as the wealthiest nations.
+
+In 1524, China sent the first settlers in Vancouver's region, buying lands to indigenous.
+
+In 1526, Aztecs and Chibchas signed a peace treaty in the following terms: the Aztecs (who suffered several defeats in the past 2 years) gave up all their possessions in the Caribbean, whereas Chibchas gave up on expending in continental Taizudalu to the North. A trade agreement is also adopted, allowing free movements for merchants between the two Empires.
+
+Southern, the Mayus started to build a wall inspired by the Great Wall of China, to protect from Mapuche incursions.
+
+Trade relations are flourishing between Mayus, Aztecs and Chibchas on one hand, and China, Aztecs and Incas on the other hand.
+
+In years 1540, many events disrupted the world:
+- Aborted secession attempt for the Chinese colony
+- The English disembarked near New-York, and founded the colony of “New-York” (they've heard about China discovering a new continent, but they don't know it's the same; they call it “New England”)
+- The Mayus, whose naval industry became mature, disembarked in Senegal, with settlers and military forces
+- The Chibchas seized Azores and Canaries islands, and opened trading outposts in Mauritania.
+
+Back to Eurasia, in 1517
+
+In Persia, Shiite Islam is threatened by a resurgence of Zoroastrianism, backed by India and China. This resurgence first appeared in Baluchistan, and spread to Herat and Shiraz. In 1523, the Safavid Empire is split in two pieces:
+- Western Persia, whose capital was Tabriz then Tehran, is a strong ally of the Arabs, ad-hoc allied with the Russians against the Ottomans, in good terms with the Maures, in bad terms with India and China, in war with Eastern Persia and the Ottomans.
+- Eastern Persia is allied with India and the Ottomans, in good terms with China, in war with Western Persia and the Arabs (who are threatening them at Ormuz). Their capital was first Zabol, then Herat. Eastern Persia is sometimes referred as Sistan.
+
+The Western Europe, under the impulse of England, gave birth in 1530 to the Holy Empire of Europe. France, Castille, Portugal, Aragon and Denmark gave up their crown and became vassals of England, in exchange of protection against any enemy.
+
+The state of the world, from religious point of view:
+- The “new” Zoroastrianism is raising in Persia, and has been widely influenced by Buddhism. It's prosecuted in Western Persia.
+- Buddhism is the second religion, but is widely “diluted” in other worships like in Taizudalu.
+- Papacy is based in London, ruling over Western Europe.
+- Christian Orthodoxy is based in Moscow, ruling over Russia.
+- Shiite Islam is regressing everywhere.
+- Sunni Islam is the first religion, adopted by the Arabs, the Maures, more and more in Western Persia, a majority of Ottomans and more and more in Eastern Europe.
+- In Taizudalu, worships hasn't the same geopolitical impacts than in Europe and Asia. It's only seen as traditions. Thus religions are much more diversified and heterogeneous.
+
+Quick overview of Eurasian powers:
+- Most powerful is China
+- England is a growing power
+- Arabs is another growing power, turning their views to Africa
+- The Ottoman Empire is very vast but fragile, like a patchwork of cultures
+- Indian world is strong, but without any expansionist views
+- Russian Empire is a great power, third behind China and Ottomans, but less fragile than Ottomans
+- The Maures, Western Persia and Eastern Persia are secondary powers
+- State-cities such as Venice, Genoa, Milan and Marseille are independent active trading powers
+
+The game will take place now, in 1550.

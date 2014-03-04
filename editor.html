@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="lib/FileSaver.js"></script>
 <script src="lib/crafty.js"></script>
 <script src="src/editor.js"></script>
 <script src="src/editor_components.js"></script>
@@ -20,6 +21,40 @@ function setSize() {
 	Game.start();
 }
 
+function save() {
+	var json = new Blob([JSON.stringify(map, undefined, 2)], {type: "text/plain;charset=utf-8"});
+	saveAs(json, "map.json");
+}
+
+function handleFileSelect0(evt) {
+	var file = evt.target.files[0];
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		map = eval(e.target.result);
+		_mw = map.length;
+		_mh = map[0].length;
+		$("#editor").show();
+		$("#mapsize").hide();
+		Game.start();
+	};
+	reader.readAsText(file);
+}
+
+function handleFileSelect(evt) {
+	var file = evt.target.files[0];
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		map = eval(e.target.result);
+		Crafty.scene("Editor");
+	};
+	reader.readAsText(file);
+}
+
+$().ready(function() {
+	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+	document.getElementById('files0').addEventListener('change', handleFileSelect0, false);
+});
+
 </script>
 <style type="text/css" media="screen">
 	body {
@@ -30,12 +65,12 @@ function setSize() {
 	}
 
 	#cr-stage { margin: 20px auto 0; }
-
 </style>
 </head>
 <body>
 <div id="mapsize">
-<input id="width" type="text"> x <input id="height" type="text"> <input type="button" value="OK" onclick="setSize();">
+<input id="width" type="text"> x <input id="height" type="text"> <input type="button" value="OK" onclick="setSize();"><br/><br/>
+Load (and wait a little bit!): <input type="file" id="files0" name="files0[]" />
 </div>
 <div id="editor" style="display:none;">
 <h2>Map Editor</h2>
@@ -44,8 +79,9 @@ function setSize() {
 Left pane is the map. Right pane is the tiles set. Click on a tile from the right pane to select a tile model, then click on the map to apply it. You can hold "shift" and move mouse around to go faster.<br/>
 Use "+" and "-" keys to change selector size.
 <br/><br/>
-To save your work, just click on "toggle map" below, then copy-paste json to a text file.<br/>
-To reload your work, open firebug or equivalent, type "map = " and copy/paste the json ; then execute "Crafty.scene('Editor');" and wait a little bit. That's it! <br/>
+<input type="button" value="Save..." onclick="save()" title="or click on 'toggle map' below, then copy-paste json to a text file." />
+Load (and wait a little bit!): <input type="file" id="files" name="files[]" title="To reload your work, open firebug or equivalent, type 'map = ' and copy/paste the json ; then execute 'Crafty.scene('Editor');' and wait a little bit. That's it! " />
+<br/>
 
 <div id="cr-stage"></div>
 

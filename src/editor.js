@@ -7,13 +7,6 @@ _selectorSize = 1;
 
 map = [];
 mapEntities = [];
-for (var x = 0; x < _mw; x++) {
-	map[x] = [];
-	mapEntities[x] = [];
-	for (var y = 0; y < _mh; y++) {
-		map[x][y] = 193;
-	}
-}
 
 Crafty.scene('Editor', function() {
 	for (var x = 0; x < _mw; x++) {
@@ -72,6 +65,17 @@ Crafty.scene('Loading', function(){
 Game = {
 	start: function() {
 		Crafty.init(_mw * _tsize + (_indexCols+1)*_tsize, (1+Math.max(_mh,_indexRows)) * _tsize);
+		for (var x = 0; x < _mw; x++) {
+			if (map[x] == undefined) {
+				map[x] = [];
+			}
+			mapEntities[x] = [];
+			if (map[x][0] == undefined) {
+				for (var y = 0; y < _mh; y++) {
+					map[x][y] = 193;
+				}
+			}
+		}
 		Crafty.background('grey');
 		Crafty.scene('Loading');
 	},

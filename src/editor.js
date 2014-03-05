@@ -7,6 +7,37 @@ _selectorSize = 1;
 
 map = [];
 mapEntities = [];
+History = {
+	SIZE: 100,
+	stack: [],
+	cursor: 0,
+	top: 0,
+	push: function(histData) {
+		this.stack[this.cursor++] = histData;
+		this.cursor %= this.SIZE;
+		this.top = this.cursor;
+	},
+	pop: function() {
+		var nextCursor = (this.cursor + this.SIZE - 1) % this.SIZE;
+		if (nextCursor == this.top || this.stack[nextCursor] == undefined) {
+			// already popped full history
+			return null;
+		} else {
+			this.cursor = nextCursor;
+			return this.stack[this.cursor];
+		}
+	},
+	unpop: function() {
+		if (this.cursor == this.top) {
+			// Reach top
+			return null;
+		} else {
+			var item = this.stack[this.cursor];
+			this.cursor = (this.cursor + 1) % this.SIZE;
+			return item;
+		}
+	}
+};
 
 Crafty.scene('Editor', function() {
 	for (var x = 0; x < _mw; x++) {
@@ -38,6 +69,23 @@ Crafty.scene('Editor', function() {
 			_selectorSize--;
 			mapSelector.resize(_selectorSize);
 			Game.requestRefresh();
+		} else if (this.isDown('Z') && this.isDown('CTRL')) {
+			var histItems = null;
+			var takeNew = false;
+			if (this.isDown('SHIFT')) {
+				histData = History.unpop();
+				takeNew = true;
+			} else {
+				histData = History.pop();
+			}
+			if (histData != null) {
+				for (var idx in histData) {
+					var item = histData[idx];
+					Game.setSingleTile(item.x, item.y, takeNew ? item.new : item.old);
+				}
+			} else {
+				console.log("null");
+			}
 		}
 	});
 });
@@ -56,11 +104,6 @@ Crafty.scene('Loading', function(){
 		Crafty.scene('Editor');
 	});
 });
-
-/*function initComponents() {
-// Some stuff to be done only once, to convert sprites into 'IdxTileXXX' and 'MapTileXXX' entities.
-
-}*/
 
 Game = {
 	start: function() {
@@ -90,16 +133,37 @@ Game = {
 		}
 	},
 
-	setTile: function(tile) {
+	setSingleTile: function(x, y, val) {
+		if (map[x][y] != val) {
+			mapEntities[x][y].destroy();
+			mapEntities[x][y] = Crafty.e('MapTile' + val).at(x, y);
+			map[x][y] = val;
+			return true;
+		} else {
+			return false;
+		}
+	},
+
+	setTileWithSelection: function(tile) {
 		if (selectedTile != undefined) {
 			var xstart = tile.x / _tsize;
 			var ystart = tile.y / _tsize;
+			var histData = [];
 			for (var x = xstart; x < xstart + _selectorSize; x++) {
 				for (var y = ystart; y < ystart + _selectorSize; y++) {
-					mapEntities[x][y].destroy();
-					mapEntities[x][y] = Crafty.e('MapTile' + selectedTile.idx).at(x, y);
-					map[x][y] = selectedTile.idx;
+					var histItem = {
+						x: x,
+						y: y,
+						old: map[x][y],
+						new: selectedTile.idx
+					};
+					if (Game.setSingleTile(x, y, selectedTile.idx)) {
+						histData.push(histItem);
+					}
 				}
+			}
+			if (histData.length > 0) {
+				History.push(histData);
 			}
 		}
 	}

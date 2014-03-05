@@ -34,13 +34,10 @@ for (var x = 0; x < _indexCols; x++) {
 					Game.requestRefresh();
 				});
 				this.bind('DoubleClick', function(data) {
-					if (confirm("Reset whole map with tile?")) {
-						var tileName = 'MapTile' + this.idx;
+					if (confirm("Reset whole map with tile? (can't be undone)")) {
 						for (var x = 0; x < _mw; x++) {
 							for (var y = 0; y < _mh; y++) {
-								mapEntities[x][y].destroy();
-								mapEntities[x][y] = Crafty.e(tileName).at(x, y);
-								map[x][y] = this.idx;
+								Game.setSingleTile(x, y, this.idx);
 							}
 						}
 						Game.requestRefresh();
@@ -53,14 +50,16 @@ for (var x = 0; x < _indexCols; x++) {
 				this.idx = inner_i;
 				this.requires('2D, Canvas, Tile, Mouse, Keyboard, ' + "spr_" + inner_i);
 				this.bind('Click', function(data) {
-					Game.setTile(this);
+					Game.setTileWithSelection(this);
 				});
 				this.bind('MouseOver', function(data) {
-					mapSelector.x = this.x;
-					mapSelector.y = this.y;
-					Game.requestRefresh();
+					if (mapSelector.x != this.x || mapSelector.y != this.y) {
+						mapSelector.x = this.x;
+						mapSelector.y = this.y;
+						Game.requestRefresh();
+					}
 					if (this.isDown("SHIFT")) {
-						Game.setTile(this);
+						Game.setTileWithSelection(this);
 					}
 				});
 			}}(i)

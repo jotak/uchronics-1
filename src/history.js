@@ -1,3 +1,4 @@
+// History buffer for handling undo/redo
 History = {
 	SIZE: 100,
 	stack: [],

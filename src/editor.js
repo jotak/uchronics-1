@@ -8,13 +8,16 @@ _selectorSize = 1;
 map = [];
 mapEntities = [];
 
+// The main scene
 Crafty.scene('Editor', function() {
+	// Create one entity per map tile
 	for (var x = 0; x < _mw; x++) {
 		for (var y = 0; y < _mh; y++) {
 			mapEntities[x][y] = Crafty.e('MapTile' + map[x][y]).at(x, y);
 		}
 	}
 
+	// Create one entity per index tile
 	var i = 0;
 	for (var x = 0; x < _indexCols; x++) {
 		for (var y = 0; y < _indexRows; y++) {
@@ -26,9 +29,14 @@ Crafty.scene('Editor', function() {
 		}
 	}
 
+	// Create the map selector (cursor) entity
 	mapSelector = Crafty.e("2D, Canvas, Selector").Selector(0, 0, 1);
+	// Create the tile index selector (cursor) entity
 	tileSelector = Crafty.e("2D, Canvas, Selector").Selector(_mw + 1, 0, 1);
 
+	// Global keyboard entity handles all "global" key events:
+	// '+' and '-' keys to increase/decrease map selector size
+	// CTRL-[SHIFT-]Z to navigate in history buffer
 	globalKeyboard = Crafty.e("Keyboard").requires('Keyboard').bind('KeyDown', function () {
 		if (this.isDown('ADD') && _selectorSize < 3) {
 			_selectorSize++;
@@ -52,13 +60,12 @@ Crafty.scene('Editor', function() {
 					var item = histData[idx];
 					Game.setSingleTile(item.x, item.y, takeNew ? item.new : item.old);
 				}
-			} else {
-				console.log("null");
 			}
 		}
 	});
 });
 
+// "Loading" scene: loads sprites then calls "Editor" scene
 Crafty.scene('Loading', function(){
 	Crafty.load(['assets/Ultima_sprites.png'], function() {
 		var allSprites = {};
@@ -75,6 +82,8 @@ Crafty.scene('Loading', function(){
 });
 
 Game = {
+
+	// Game initialization
 	start: function() {
 		Crafty.init(_mw * _tsize + (_indexCols+1)*_tsize, (1+Math.max(_mh,_indexRows)) * _tsize);
 		for (var x = 0; x < _mw; x++) {
@@ -93,7 +102,10 @@ Game = {
 	},
 
 	redrawTimeout: null,
+	// Refresh whole screen is requested
 	requestRefresh: function() {
+		// Call Crafty.DrawManager.drawAll();
+		// But never twice or more within 100 ms (it's time-consuming)
 		if (this.redrawTimeout == null) {
 			this.redrawTimeout = setTimeout(function() {	
 				Crafty.DrawManager.drawAll();
@@ -102,6 +114,8 @@ Game = {
 		}
 	},
 
+	// Set value on given single tile
+	// Returns true if value was actually updated (different from old value)
 	setSingleTile: function(x, y, val) {
 		if (map[x][y] != val) {
 			mapEntities[x][y].destroy();
@@ -113,6 +127,7 @@ Game = {
 		}
 	},
 
+	// Apply input tile on selection, and log change in history
 	setTileWithSelection: function(tile) {
 		if (selectedTile != undefined) {
 			var xstart = tile.x / _tsize;
